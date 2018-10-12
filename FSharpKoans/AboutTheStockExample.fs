@@ -1,5 +1,7 @@
 ﻿namespace FSharpKoans
 open FSharpKoans.Core
+open System.Globalization
+
 
 //---------------------------------------------------------------
 // Apply Your Knowledge!
@@ -60,6 +62,15 @@ module ``about the stock example`` =
 
     [<Koan>]
     let YouGotTheAnswerCorrect() =
-        let result =  __
+        let result =  
+            stockData
+            |> List.skip 1
+            |> List.map (fun r -> r.Split ([|','|]))
+            |> List.map (fun a ->            
+                            let openprice = System.Double.Parse(a.[1],CultureInfo.InvariantCulture)
+                            let closeprice =  System.Double.Parse(a.[6],CultureInfo.InvariantCulture)
+                            (a.[0], System.Math.Abs(openprice - closeprice)))
+            |> List.maxBy snd
+            |> fst
         
         AssertEquality "2012-03-13" result

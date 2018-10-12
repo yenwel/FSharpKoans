@@ -22,7 +22,7 @@ module ``about lists`` =
         //      so indexing elements is O(n). 
         
         AssertEquality list.Head "apple"
-        AssertEquality list.Tail "peach"
+        AssertEquality list.Tail ["pear";"grape";"peach"]
         AssertEquality list.Length 4
 
         (* .NET developers coming from other languages may be surprised
@@ -43,7 +43,7 @@ module ``about lists`` =
         
         AssertEquality ["apple"; "pear"; "grape"; "peach"] third
         AssertEquality second ["pear"; "grape"; "peach"]
-        AssertEquality first ["grape;" ; "peach"]
+        AssertEquality first ["grape" ; "peach"]
 
         //What happens if you uncomment the following?
 
@@ -59,7 +59,7 @@ module ``about lists`` =
         let first = ["apple"; "pear"; "grape"]
         let second = first @ ["peach"]
 
-        AssertEquality first ["apple";"pear","grape"]
+        AssertEquality first ["apple";"pear";"grape"]
         AssertEquality second ["apple"; "pear";"grape";"peach"]
 
     (* THINK ABOUT IT: In general, what performs better for building lists, 
@@ -74,7 +74,7 @@ module ``about lists`` =
         let list = [0..4]
         
         AssertEquality list.Head 0
-        AssertEquality list.Tail 4
+        AssertEquality list.Tail [1;2;3;4]
         
     [<Koan>]
     let CreatingListsWithComprehensions() =
